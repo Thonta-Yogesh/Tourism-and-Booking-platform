@@ -1,0 +1,90 @@
+<section class="hero-scroll-container">
+    <div class="sticky-canvas-container">
+        <canvas #heroCanvas></canvas>
+
+        <!-- Black vignette overlays on both sides -->
+        <div class="vignette-left" [style.opacity]="destContainerOpacity()"></div>
+        <div class="vignette-right" [style.opacity]="destContainerOpacity()"></div>
+
+        <!-- VERTICAL DESTINATIONS — stays sticky with canvas, visible during tower phase -->
+        <div class="dest-list-container" [style.opacity]="destContainerOpacity()"
+            [style.visibility]="destContainerOpacity() === 0 ? 'hidden' : 'visible'">
+            <div class="dest-list" [style.transform]="'translateY(' + destTranslateY() + 'px)'">
+                @for (dest of loopedDestinations; track $index) {
+                <div class="dest-list-item">
+                    <span class="dest-list-label">{{ dest.name }}</span>
+                    <a [routerLink]="['/destinations', dest.id]" class="dest-explore-btn">Explore</a>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Discover More — bold text beside the tower, fades in during tower phase -->
+        <div class="discover-more-container" [style.opacity]="discoverBtnOpacity()"
+            [style.visibility]="discoverBtnOpacity() === 0 ? 'hidden' : 'visible'">
+            <a routerLink="/destinations" class="discover-more-link">Discover<br><em>more</em></a>
+        </div>
+    </div>
+
+    <!-- Text overlay — all elements use scroll-driven fall/zoom/fade -->
+    <div class="scroll-content">
+        <div class="hero-viewport">
+
+            <!-- CENTER: "ELEVÉ" title over the window -->
+            <div class="hero-center-title" [style.opacity]="titleOpacity()"
+                [style.transform]="'translate(-50%, -50%) scale(' + titleScale() + ') translateY(' + titleTranslateY() + 'px)'">
+                <span class="center-title-text">ELEVÉ</span>
+            </div>
+
+            <!-- LEFT: Main heading -->
+            <div class="hero-text-left" [style.opacity]="leftOpacity()"
+                [style.transform]="'scale(' + leftScale() + ') translateY(' + leftTranslateY() + 'px)'">
+                <h1 class="hero-large-text">We are<br><em>exploration</em></h1>
+            </div>
+
+            <!-- RIGHT: Secondary heading -->
+            <div class="hero-text-right" [style.opacity]="rightOpacity()"
+                [style.transform]="'scale(' + rightScale() + ') translateY(' + rightTranslateY() + 'px)'">
+                <h1 class="hero-large-text">We are<br><em>distinction</em></h1>
+            </div>
+
+            <!-- BOTTOM LEFT: Tagline & description -->
+            <div class="hero-text-bottom-left" [style.opacity]="bottomLeftOpacity()"
+                [style.transform]="'translateY(' + bottomLeftTranslateY() + 'px)'">
+                <h3 class="hero-tagline">Your freedom to<br>explore the cosmos</h3>
+                <p class="hero-desc">
+                    Every journey is designed around your comfort, time, and ambitions — so you can focus on what truly
+                    matters, while we take care of everything&nbsp;else.
+                </p>
+            </div>
+
+            <!-- BOTTOM RIGHT: Scroll hint -->
+            <div class="hero-text-bottom-right" [style.opacity]="bottomRightOpacity()">
+                <div class="scroll-cue">
+                    <span class="scroll-cue-arrow">↓</span>
+                    <span class="scroll-cue-label">SCROLL DOWN</span>
+                    <span class="scroll-cue-sub">TO START THE JOURNEY</span>
+                </div>
+            </div>
+
+            <!-- BOTTOM CENTER: CTA Button -->
+            <div class="hero-cta-center" [style.opacity]="ctaOpacity()"
+                [style.transform]="'translateX(-50%) translateY(' + ctaTranslateY() + 'px)'">
+                <a routerLink="/book-tour" class="cta-btn">
+                    <span class="cta-label">Book a Tour</span>
+                    <span class="cta-icon-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewBox="0 0 16 16">
+                            <path
+                                d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Z" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Subsequent viewports (pure scroll space — canvas keeps animating) -->
+        <div class="hero-viewport"></div>
+        <div class="hero-viewport"></div>
+    </div>
+</section>

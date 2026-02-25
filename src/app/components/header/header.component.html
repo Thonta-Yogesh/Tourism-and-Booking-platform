@@ -1,0 +1,59 @@
+<header [class.scrolled]="isScrolled()" [class.is-home]="isHome()" class="d-flex align-items-center w-100">
+    <div class="container-fluid px-4 px-md-5 d-flex align-items-center justify-content-between position-relative">
+
+        <!-- Left: Navigation Links (original names) -->
+        <nav class="desktop-nav" [class.mobile-open]="isMenuOpen()">
+            <ul class="nav-menu list-unstyled mb-0 d-flex align-items-center gap-4">
+                <li><a routerLink="/" (click)="closeMenu()">Home</a></li>
+                <li><a routerLink="/destinations" (click)="closeMenu()">Destinations</a></li>
+                <li><a routerLink="/activities" (click)="closeMenu()">Activities</a></li>
+                <li><a routerLink="/contact" (click)="closeMenu()">Contact Us</a></li>
+
+                <!-- Mobile Only Actions -->
+                @if (!currentUser()) {
+                <li class="d-lg-none mt-4"><a routerLink="/login" (click)="closeMenu()" class="pointer">Sign In</a></li>
+                } @else {
+                <li class="d-lg-none mt-4"><a routerLink="/profile" (click)="closeMenu()">My Profile</a></li>
+                <li class="d-lg-none"><a (click)="logout(); closeMenu()" class="pointer">Logout</a></li>
+                }
+                <li class="d-lg-none"><a routerLink="/book-tour" (click)="closeMenu()" class="btn-book">Book a Tour</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Center: Logo (always visible in header) -->
+        <div class="logo-wrapper">
+            <a routerLink="/" class="logo">ELEVÉ</a>
+        </div>
+
+        <!-- Right: Auth & CTA -->
+        <div class="header-actions d-flex align-items-center gap-3">
+
+            <!-- Auth Section -->
+            @if (!currentUser()) {
+            <div class="auth-buttons d-none d-lg-flex align-items-center gap-3">
+                <a routerLink="/login" class="nav-link pointer">Sign In</a>
+            </div>
+            } @else {
+            <div class="user-profile d-none d-lg-flex align-items-center gap-2">
+                <img [src]="currentUser()?.avatar" alt="User" class="avatar">
+                <span class="username">{{ currentUser()?.name }}</span>
+                <button (click)="logout()" class="btn-logout" aria-label="Logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </div>
+            }
+
+            <a routerLink="/book-tour" class="btn-book text-decoration-none d-none d-lg-inline-block">Book a Tour</a>
+
+            <!-- Mobile Burger -->
+            <button class="burger d-lg-none" (click)="toggleMenu()" [class.open]="isMenuOpen()"
+                aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+    </div>
+</header>

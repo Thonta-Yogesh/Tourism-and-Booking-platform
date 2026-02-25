@@ -1,0 +1,164 @@
+@if (destination(); as dest) {
+<div class="container py-5 fade-in" style="margin-top: 85px;">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/" class="text-decoration-none text-muted">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/destinations"
+                    class="text-decoration-none text-muted">Destinations</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ dest.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row g-5">
+        <!-- Image Gallery Section -->
+        <div class="col-lg-7">
+            <div class="gallery-container mb-4 position-relative overflow-hidden rounded-4 shadow-sm"
+                (mouseenter)="togglePause(true)" (mouseleave)="togglePause(false)">
+                <img [src]="activeImage() || dest.imageUrl" [alt]="dest.name" class="main-image w-100 object-fit-cover"
+                    [class.fade-out]="isTransitioning()" style="height: 500px;">
+            </div>
+
+            <div class="d-flex gap-3 overflow-auto pb-2 thumbnail-scroll">
+                @for (img of dest.images; track $index) {
+                <button class="btn p-0 border-0 thumbnail-btn" [class.active]="activeImageIndex() === $index"
+                    (click)="setActiveImage($index)">
+                    <img [src]="img" [alt]="dest.name + ' view ' + ($index + 1)" class="rounded-3 object-fit-cover"
+                        style="width: 100px; height: 70px;">
+                </button>
+                }
+            </div>
+        </div>
+
+        <!-- Details Section -->
+        <div class="col-lg-5">
+            <div class="badge bg-primary-subtle text-primary mb-3 px-3 py-2 rounded-pill">{{ dest.type }}</div>
+            <h1 class="display-4 fw-bold mb-3">{{ dest.name }}</h1>
+            <div class="d-flex align-items-center mb-4">
+                <i class="bi bi-geo-alt text-primary me-2"></i>
+                <span class="text-muted me-4">{{ dest.location }}</span>
+                <i class="bi bi-star-fill text-warning me-2"></i>
+                <span class="fw-bold">{{ dest.rating }}</span>
+            </div>
+
+            <p class="lead text-secondary mb-4">{{ dest.description }}</p>
+
+            <div class="card border-0 bg-light rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">Trip Highlights</h5>
+                    <ul class="list-unstyled mb-0">
+                        @for (highlight of dest.highlights; track highlight) {
+                        <li class="mb-2 d-flex align-items-start">
+                            <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                            <span>{{ highlight }}</span>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white border rounded-4 p-4 mb-4 shadow-sm">
+                <h5 class="fw-bold mb-3">Tourism Info</h5>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <small class="text-muted d-block uppercase fw-bold"
+                            style="font-size: 0.75rem; letter-spacing: 1px;">DURATION</small>
+                        <span>{{ dest.duration }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted d-block uppercase fw-bold"
+                            style="font-size: 0.75rem; letter-spacing: 1px;">BEST TIME</small>
+                        <span>{{ dest.tourismInfo.bestTimeToVisit }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted d-block uppercase fw-bold"
+                            style="font-size: 0.75rem; letter-spacing: 1px;">LANGUAGE</small>
+                        <span>{{ dest.tourismInfo.language }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted d-block uppercase fw-bold"
+                            style="font-size: 0.75rem; letter-spacing: 1px;">CURRENCY</small>
+                        <span>{{ dest.tourismInfo.currency }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between bg-dark text-white p-4 rounded-4 shadow-lg">
+                <div>
+                    <span class="d-block text-white-50 small">Starting from</span>
+                    <span class="h2 fw-bold mb-0">{{ dest.price | currency }}</span>
+                    <span class="text-white-50 small"> / person</span>
+                </div>
+                <button routerLink="/book-tour" [queryParams]="{ destinationId: dest.id }"
+                    class="btn btn-light rounded-pill px-5 py-3 fw-bold">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Reviews Section -->
+    <div class="row mt-5 pt-5">
+        <div class="col-12">
+            <h3 class="fw-bold mb-4">Customer Reviews</h3>
+
+            <div class="reviews-container position-relative overflow-hidden w-100">
+                <!-- Fade Gradients -->
+                <div class="fade-overlay-left"></div>
+                <div class="fade-overlay-right"></div>
+
+                <div class="reviews-track d-flex gap-4">
+                    <!-- Original List -->
+                    @for (review of dest.reviews; track $index) {
+                    <div class="review-card p-4 rounded-4 bg-white shadow-sm border col-md-4 flex-shrink-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="avatar-circle rounded-circle bg-light d-flex align-items-center justify-content-center me-3 fw-bold text-primary fs-5"
+                                style="width: 50px; height: 50px;">
+                                {{ review.author.charAt(0) }}
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">{{ review.author }}</h6>
+                                <small class="text-muted">{{ review.date }}</small>
+                            </div>
+                        </div>
+                        <div class="mb-2 text-warning">
+                            @for (star of [1,2,3,4,5]; track star) {
+                            <i class="bi" [class.bi-star-fill]="star <= review.rating"
+                                [class.bi-star]="star > review.rating"></i>
+                            }
+                        </div>
+                        <p class="text-secondary small mb-0">"{{ review.text }}"</p>
+                    </div>
+                    }
+                    <!-- Duplicate List for Infinite Loop -->
+                    @for (review of dest.reviews; track $index) {
+                    <div class="review-card p-4 rounded-4 bg-white shadow-sm border col-md-4 flex-shrink-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="avatar-circle rounded-circle bg-light d-flex align-items-center justify-content-center me-3 fw-bold text-primary fs-5"
+                                style="width: 50px; height: 50px;">
+                                {{ review.author.charAt(0) }}
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">{{ review.author }}</h6>
+                                <small class="text-muted">{{ review.date }}</small>
+                            </div>
+                        </div>
+                        <div class="mb-2 text-warning">
+                            @for (star of [1,2,3,4,5]; track star) {
+                            <i class="bi" [class.bi-star-fill]="star <= review.rating"
+                                [class.bi-star]="star > review.rating"></i>
+                            }
+                        </div>
+                        <p class="text-secondary small mb-0">"{{ review.text }}"</p>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+} @else {
+<div class="container py-5 mt-5 text-center">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+}

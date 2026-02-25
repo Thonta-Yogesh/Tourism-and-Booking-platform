@@ -1,1 +1,191 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles - Simple & Classy */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+/* Apple System Fonts are preferred now */
+
+:root {
+  /* Common Core */
+  --primary: #1a1a1a;
+  --accent: #000000;
+  /* Pure Black - Classy Monochrome */
+  --white: #ffffff;
+  --border-color: #eeeeee;
+
+  /* Theme Specific - Classy Standard */
+  --bg-soft: #fcfcfc;
+  --text-main: #333333;
+  --text-muted: #666666;
+
+  --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --shadow-classy: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --radius-classy: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Premium Background: Subtle warm gradient + noise texture for depth */
+  background-color: var(--bg-soft);
+  background-image:
+    radial-gradient(at 0% 0%, rgba(197, 160, 89, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(0, 0, 0, 0.02) 0px, transparent 50%);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Selection for Classy Feel */
+::selection {
+  background: rgba(197, 160, 89, 0.3);
+  color: var(--primary);
+}
+
+/* Elegant Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4c29c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-smooth);
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+
+
+/* Button Refinement */
+.btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: var(--radius-classy);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+}
+
+/* Override Bootstrap's outline primary for our theme */
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background-color: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(197, 160, 89, 0.1);
+}
+
+/* Active / Focus States - Remove default Blue */
+.btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active,
+.btn-outline-primary:active,
+.btn-outline-primary:focus,
+.btn-outline-primary:focus-visible {
+  background-color: transparent !important;
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  box-shadow: none !important;
+  /* Remove blue focus ring */
+}
+
+/* Ensure the currently selected filter (which might have .btn-primary) is also styled correctly if needed */
+
+/* Form Control - Remove default Blue focus */
+.form-control:focus {
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+/* Search Input Group styling */
+.search-input-group .input-group-text,
+.search-input-group .form-control {
+  border-color: var(--primary);
+  /* Default: Black to match theme */
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.search-input-group .input-group-text {
+  color: var(--primary);
+}
+
+/* Hover and Focus States - Gold */
+.search-input-group:hover .input-group-text,
+.search-input-group:hover .form-control,
+.search-input-group:focus-within .input-group-text,
+.search-input-group:focus-within .form-control {
+  border-color: var(--accent);
+}
+
+.search-input-group:hover .input-group-text,
+.search-input-group:focus-within .input-group-text {
+  color: var(--accent);
+}

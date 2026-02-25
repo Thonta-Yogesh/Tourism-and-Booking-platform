@@ -1,0 +1,191 @@
+<div class="container py-5 mt-5">
+    <div class="text-center mb-5 pt-4">
+        <h1 class="display-4 fw-bold">Payment</h1>
+        <p class="lead text-muted mt-2">Complete your payment to confirm the booking.</p>
+    </div>
+
+    @if (bookingData(); as data) {
+    <div class="row g-5">
+        <!-- Left Column: Payment Form -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-lg rounded-5 overflow-hidden h-100 pop-card">
+                <div class="card-body p-4 p-md-5">
+                    <h4 class="fw-bold mb-4 text-theme">
+                        <i class="bi bi-credit-card me-2"></i>Card Details
+                    </h4>
+
+                    @if (paymentError()) {
+                    <div class="alert alert-danger rounded-4 mb-4 d-flex align-items-center" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        {{ paymentError() }}
+                    </div>
+                    }
+
+                    <form [formGroup]="paymentForm" (ngSubmit)="processPayment()">
+                        <!-- Cardholder Name -->
+                        <div class="mb-4">
+                            <label for="cardholderName"
+                                class="form-label fw-bold small text-uppercase text-muted">Cardholder Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-0 rounded-start-pill ps-3">
+                                    <i class="bi bi-person text-theme"></i>
+                                </span>
+                                <input type="text" id="cardholderName"
+                                    class="form-control form-control-lg border-0 bg-light rounded-end-pill shadow-sm-hover"
+                                    formControlName="cardholderName" placeholder="Name on card">
+                            </div>
+                            @if (paymentForm.get('cardholderName')?.invalid &&
+                            paymentForm.get('cardholderName')?.touched) {
+                            <div class="text-danger small mt-1 ps-3">Cardholder name is required.</div>
+                            }
+                        </div>
+
+                        <!-- Card Number -->
+                        <div class="mb-4">
+                            <label for="cardNumber" class="form-label fw-bold small text-uppercase text-muted">Card
+                                Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-0 rounded-start-pill ps-3">
+                                    <i class="bi bi-credit-card-2-front text-theme"></i>
+                                </span>
+                                <input type="text" id="cardNumber"
+                                    class="form-control form-control-lg border-0 bg-light rounded-end-pill shadow-sm-hover"
+                                    formControlName="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19"
+                                    (input)="formatCardNumber($event)">
+                            </div>
+                            @if (paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched) {
+                            <div class="text-danger small mt-1 ps-3">Please enter a valid 16-digit card number.</div>
+                            }
+                        </div>
+
+                        <div class="row g-4 mb-4">
+                            <!-- Expiry -->
+                            <div class="col-md-6">
+                                <label for="expiryDate"
+                                    class="form-label fw-bold small text-uppercase text-muted">Expiry Date</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-0 rounded-start-pill ps-3">
+                                        <i class="bi bi-calendar3 text-theme"></i>
+                                    </span>
+                                    <input type="text" id="expiryDate"
+                                        class="form-control form-control-lg border-0 bg-light rounded-end-pill shadow-sm-hover"
+                                        formControlName="expiryDate" placeholder="MM/YY" maxlength="5"
+                                        (input)="formatExpiry($event)">
+                                </div>
+                                @if (paymentForm.get('expiryDate')?.invalid && paymentForm.get('expiryDate')?.touched) {
+                                <div class="text-danger small mt-1 ps-3">Enter a valid expiry (MM/YY).</div>
+                                }
+                            </div>
+
+                            <!-- CVV -->
+                            <div class="col-md-6">
+                                <label for="cvv" class="form-label fw-bold small text-uppercase text-muted">CVV</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-0 rounded-start-pill ps-3">
+                                        <i class="bi bi-lock text-theme"></i>
+                                    </span>
+                                    <input type="password" id="cvv"
+                                        class="form-control form-control-lg border-0 bg-light rounded-end-pill shadow-sm-hover"
+                                        formControlName="cvv" placeholder="•••" maxlength="4">
+                                </div>
+                                @if (paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched) {
+                                <div class="text-danger small mt-1 ps-3">Enter a valid 3 or 4 digit CVV.</div>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Secure payment notice -->
+                        <div class="d-flex align-items-center text-muted small mb-4">
+                            <i class="bi bi-shield-lock-fill me-2 text-success"></i>
+                            Your payment information is secure and encrypted.
+                        </div>
+
+                        <!-- Pay Now Button -->
+                        <button type="submit"
+                            class="btn btn-theme w-100 rounded-pill py-3 fw-bold shadow-lg d-flex justify-content-between align-items-center px-4"
+                            [disabled]="isProcessing()">
+                            @if (isProcessing()) {
+                            <span>Processing Payment...</span>
+                            <div class="spinner-border spinner-border-sm text-white" role="status"></div>
+                            } @else {
+                            <span><i class="bi bi-lock-fill me-2"></i>Pay Now</span>
+                            <span class="bg-white text-theme px-2 py-1 rounded-pill small fw-bold">
+                                {{ data.totalPrice | currency }}
+                            </span>
+                            }
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Booking Summary -->
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-lg rounded-5 overflow-hidden card-spotlight text-white pop-card">
+                <div class="card-body p-4 p-md-5 position-relative">
+                    <div class="position-absolute top-0 end-0 p-3 opacity-25">
+                        <i class="bi bi-receipt display-1"></i>
+                    </div>
+                    <h3 class="fw-bold mb-4">Booking Summary</h3>
+
+                    <div class="summary-row">
+                        <span class="summary-label"><i class="bi bi-geo-alt me-2"></i>Destination</span>
+                        <span class="summary-value">{{ data.destinationName }}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label"><i class="bi bi-calendar-event me-2"></i>Date</span>
+                        <span class="summary-value">{{ data.date }}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label"><i class="bi bi-people me-2"></i>Guests</span>
+                        <span class="summary-value">{{ data.guests }}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label"><i class="bi bi-person me-2"></i>Name</span>
+                        <span class="summary-value">{{ data.name }}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label"><i class="bi bi-envelope me-2"></i>Email</span>
+                        <span class="summary-value">{{ data.email }}</span>
+                    </div>
+
+                    @if (data.couponCode) {
+                    <div class="summary-row text-warning">
+                        <span class="summary-label"><i class="bi bi-tag me-2"></i>Coupon</span>
+                        <span class="summary-value">{{ data.couponCode }} (-{{ data.discountAmount | currency }})</span>
+                    </div>
+                    }
+
+                    <hr class="border-white opacity-50 my-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h5 mb-0 opacity-75">Total</span>
+                        <span class="h2 fw-bold mb-0">{{ data.totalPrice | currency }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Booking Link -->
+            <a routerLink="/book-tour"
+                class="btn btn-outline-secondary w-100 rounded-pill py-3 fw-bold mt-4 d-flex align-items-center justify-content-center">
+                <i class="bi bi-arrow-left me-2"></i>Back to Booking
+            </a>
+
+            <!-- Accepted Cards -->
+            <div class="text-center mt-4">
+                <p class="text-muted small mb-2">We accept</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-bold">
+                        <i class="bi bi-credit-card me-1"></i>Visa
+                    </span>
+                    <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-bold">
+                        <i class="bi bi-credit-card me-1"></i>Mastercard
+                    </span>
+                    <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-bold">
+                        <i class="bi bi-credit-card me-1"></i>Amex
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>

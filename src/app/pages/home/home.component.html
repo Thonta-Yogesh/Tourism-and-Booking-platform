@@ -1,0 +1,89 @@
+<app-hero></app-hero>
+
+<section class="py-5 container">
+    <div class="text-center mb-5">
+        <h2 class="section-title">Curated Experiences</h2>
+        <div class="accent-line"></div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="exp-card h-100">
+                <div class="exp-info">
+                    <h3>Natural Wonders</h3>
+                    <p>Immerse yourself in the untamed beauty of the world's most stunning landscapes.</p>
+                    <a routerLink="/activities" class="btn-text text-uppercase">Explore →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="exp-card h-100">
+                <div class="exp-info">
+                    <h3>Cultural Heritage</h3>
+                    <p>Journey through history and witness the rich traditions of diverse civilizations.</p>
+                    <a routerLink="/activities" class="btn-text text-uppercase">Explore →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="exp-card h-100">
+                <div class="exp-info">
+                    <h3>Urban Escapes</h3>
+                    <p>Experience the vibrant energy and sophisticated allure of global metropolises.</p>
+                    <a routerLink="/activities" class="btn-text text-uppercase">Explore →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="top-destinations-section py-5 position-relative overflow-hidden">
+    <div class="animated-bg"></div>
+    <div class="container position-relative z-1">
+        <div class="text-center mb-5">
+            <h2 class="section-title text-white">Top Destinations</h2>
+            <div class="accent-line bg-white"></div>
+        </div>
+
+        <div class="carousel-container d-flex align-items-center justify-content-center perspective-1000">
+            @for (dest of topDestinations(); track dest.id; let i = $index) {
+            <div class="carousel-card" [class.active]="i === activeIndex()"
+                [class.prev]="i === (activeIndex() === 0 ? topDestinations().length - 1 : activeIndex() - 1)"
+                [class.next]="i === (activeIndex() === topDestinations().length - 1 ? 0 : activeIndex() + 1)"
+                (click)="setActiveIndex(i)">
+
+                <div class="card-content" [routerLink]="['/destinations', dest.id]">
+                    <img [src]="dest.imageUrl" [alt]="dest.name" class="card-img">
+                    <div class="card-overlay">
+                        <h3>{{ dest.name }}</h3>
+                        <p class="mb-0"><i class="bi bi-geo-alt-fill me-1"></i> {{ dest.location }}</p>
+                        @if (i === activeIndex()) {
+                        <div class="rating mt-2">
+                            <i class="bi bi-star-fill text-warning"></i> {{ dest.rating }}
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <button class="btn btn-outline-light rounded-circle p-2" (click)="prevSlide()">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="btn btn-outline-light rounded-circle p-2" (click)="nextSlide()">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="banner-section py-5">
+    <div class="container text-center">
+        <h2 class="banner-title mb-4">Ready for your next journey?</h2>
+        <a routerLink="/book-tour" class="btn btn-outline"
+            style="border-color: var(--accent); color: var(--accent);">Get in Touch</a>
+    </div>
+</section>

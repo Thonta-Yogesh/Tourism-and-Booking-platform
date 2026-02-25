@@ -1,0 +1,57 @@
+<div class="signup-wrapper d-flex align-items-center justify-content-center">
+    <div class="signup-card">
+        <div class="card-header text-center">
+            <h2 class="title">Create Account</h2>
+            <p class="subtitle">Join us for your next luxury adventure.</p>
+        </div>
+
+        <form (submit)="onSubmit(); $event.preventDefault()">
+            <div class="form-group mb-4">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" [ngModel]="fullName()"
+                    (ngModelChange)="fullName.set($event)" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" [ngModel]="email()" (ngModelChange)="email.set($event)"
+                    placeholder="john@example.com" required>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" [ngModel]="password()"
+                            (ngModelChange)="password.set($event)" placeholder="******" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" [ngModel]="confirmPassword()"
+                            (ngModelChange)="confirmPassword.set($event)" placeholder="******" required>
+                    </div>
+                </div>
+            </div>
+
+            @if (errorMessage()) {
+            <div class="error-message mb-3 text-center">
+                {{ errorMessage() }}
+            </div>
+            }
+
+            <button type="submit" class="btn-signup w-100" [disabled]="isLoading()">
+                @if (isLoading()) {
+                <span class="spinner"></span> Creating Account...
+                } @else {
+                Create Account
+                }
+            </button>
+        </form>
+
+        <div class="card-footer text-center mt-4">
+            <p>Already have an account? <a routerLink="/login" class="login-link">Sign In</a></p>
+        </div>
+    </div>
+</div>

@@ -71,6 +71,12 @@ export default function Header() {
                   <Link to="/profile" onClick={() => setIsMenuOpen(false)}>My Profile</Link>
                 </li>
                 <li className="d-lg-none">
+                  <Link to="/analytics/destination-popularity" onClick={() => setIsMenuOpen(false)}>Destination Popularity</Link>
+                </li>
+                <li className="d-lg-none">
+                  <Link to="/analytics/booking-status" onClick={() => setIsMenuOpen(false)}>Booking Analytics</Link>
+                </li>
+                <li className="d-lg-none">
                   <span onClick={() => { handleLogout(); setIsMenuOpen(false) }} className="pointer" style={{ cursor: 'pointer' }}>Logout</span>
                 </li>
               </>

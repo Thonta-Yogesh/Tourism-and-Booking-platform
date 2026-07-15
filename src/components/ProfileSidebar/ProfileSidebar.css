@@ -157,83 +157,60 @@
 
 @media (max-width: 900px) {
   .ps-toggle-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: #c5a059; /* brand gold */
-    color: #000000;
-    border: none;
-    box-shadow: 0 4px 16px rgba(197, 160, 89, 0.4);
-    cursor: pointer;
-    z-index: 1060;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .ps-toggle-btn:hover {
-    background: #b58f49;
-    transform: scale(1.05);
-  }
-
-  .ps-toggle-btn.active {
-    background: #1a1a1a;
-    color: #ffffff;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    display: none !important;
   }
 
   .ps-overlay {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
-    z-index: 1040;
+    display: none !important;
   }
 
   .ps-sidebar {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
-    width: 280px;
-    height: 100vh;
-    background: #ffffff;
-    border-right: 1px solid #e8e8e8;
-    z-index: 1050;
-    transform: translateX(-100%);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.15);
-    padding: 2.5rem 1.5rem;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 0.75rem 1rem;
+    box-shadow: none;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    background: #ffffff;
+    z-index: 10;
+    transform: none !important;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
 
-  .ps-sidebar.ps-open {
-    transform: translateX(0);
+  .ps-sidebar::-webkit-scrollbar {
+    display: none;
   }
 
   .ps-user {
-    margin-bottom: 1.5rem;
+    display: none !important; /* Hide user profile details to save space on mobile sub-navigation */
   }
 
   .ps-nav {
     display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    flex: 1;
+    flex-direction: row;
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0;
   }
 
   .ps-link {
-    width: 100%;
-    padding: 0.75rem 1rem;
+    white-space: nowrap;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8rem;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
   }
 
   .ps-logout {
-    margin-top: auto;
-    width: 100%;
+    display: none !important; /* Hide logout button inside sub-nav as it is available in main header */
   }
 }

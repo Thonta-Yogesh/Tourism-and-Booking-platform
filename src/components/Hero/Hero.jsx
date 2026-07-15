@@ -107,7 +107,7 @@ export default function Hero() {
     // Preload images
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const img = new Image()
-      img.src = `/home_animation_pics/${String(i).padStart(5, '0')}.png`
+      img.src = `/home_animation_pics/${String(i).padStart(5, '0')}.webp`
       if (i === 1) {
         img.onload = () => drawFrame(1)
       }

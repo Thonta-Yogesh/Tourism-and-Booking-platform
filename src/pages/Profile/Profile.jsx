@@ -50,9 +50,9 @@ export default function Profile() {
   if (!currentUser) return null
 
   return (
-    <div className="profile-layout">
+    <div className="page-shell">
       <ProfileSidebar />
-      <main className="profile-main">
+      <main className="page-main">
         <div className="profile-header d-flex justify-content-between align-items-center mb-4">
           <div>
             <h1 className="h3 fw-bold mb-0">My Profile</h1>

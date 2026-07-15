@@ -24,9 +24,9 @@ export default function DestinationPopularity() {
   }, [])
 
   return (
-    <div className="analytics-layout">
+    <div className="page-shell">
       <ProfileSidebar />
-      <main className="analytics-main">
+      <main className="page-main">
         <section className="analytics-section">
           <div className="section-header">
             <div>

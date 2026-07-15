@@ -8,11 +8,23 @@ export function AuthProvider({ children }) {
   const login = useCallback((username = 'User') => {
     const lowerUsername = username.toLowerCase()
     const role = lowerUsername.includes('admin') ? 'admin' : 'user'
+    
+    let displayName = username
+    if (username.includes('@')) {
+      const prefix = username.split('@')[0].toLowerCase()
+      if (prefix.includes('yogesh') || prefix.includes('thonta')) {
+        displayName = 'T. Yogesh'
+      } else {
+        const cleanPrefix = prefix.replace(/\d+/g, '')
+        displayName = cleanPrefix.charAt(0).toUpperCase() + cleanPrefix.slice(1)
+      }
+    }
+
     setCurrentUser({
       id: '1',
-      name: username,
+      name: displayName,
       email: username.includes('@') ? username : 'yogesh@example.com',
-      avatar: `https://ui-avatars.com/api/?name=${username.replace(/ /g, '+')}&background=c5a059&color=fff`,
+      avatar: `https://ui-avatars.com/api/?name=${displayName.replace(/ /g, '+')}&background=c5a059&color=fff`,
       role
     })
   }, [])

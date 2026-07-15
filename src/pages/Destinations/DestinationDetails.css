@@ -1,0 +1,214 @@
+.gallery-container {
+    height: 300px; /* Mobile height */
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-classy, 0 10px 30px rgba(0, 0, 0, 0.05));
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@media (min-width: 992px) {
+    .gallery-container {
+        height: 520px; /* Widescreen gallery balancing side columns */
+    }
+}
+
+.gallery-container:hover .main-image {
+    transform: scale(1.03);
+}
+
+.main-image {
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+
+.main-image.fade-out {
+    opacity: 0;
+}
+
+.thumbnail-btn {
+    width: 90px;
+    height: 65px;
+    padding: 0;
+    margin: 0;
+    border: 2px solid transparent;
+    background: transparent;
+    opacity: 0.6;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: scale(0.96);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.thumbnail-btn:hover {
+    opacity: 0.95;
+    transform: scale(1);
+}
+
+.thumbnail-btn.active {
+    opacity: 1;
+    transform: scale(1.02);
+    border-color: #c5a059; /* Brand luxury gold border */
+}
+
+/* Custom scrollbar for thumbnails */
+.thumbnail-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Luxury Branded Details Components */
+.rating-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: rgba(197, 160, 89, 0.08);
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-radius: 100px;
+    color: var(--primary, #1a1a1a);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.rating-badge i {
+    color: #c5a059; /* Brand gold star */
+}
+
+.highlight-tag {
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border-color, #eeeeee);
+    color: var(--text-muted, #666666);
+    display: inline-block;
+    transition: var(--transition-smooth, all 0.3s ease);
+}
+
+.highlight-tag:hover {
+    background: rgba(197, 160, 89, 0.05);
+    border-color: rgba(197, 160, 89, 0.3);
+    color: var(--primary, #1a1a1a);
+}
+
+.info-card {
+    background: rgba(0, 0, 0, 0.01);
+    border: 1px solid var(--border-color, #eeeeee);
+    border-radius: 16px;
+}
+
+.book-cta-card {
+    background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 20px !important; /* beautifully curved edges */
+}
+
+.book-cta-card .price-amount {
+    color: #c5a059 !important; /* warm luxury gold - visibility fix */
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+}
+
+.book-cta-card span:not(.price-amount) {
+    color: rgba(255, 255, 255, 0.6) !important; /* legible visibility */
+}
+
+.book-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px; /* fitted padding to prevent wrapping inside col-lg-4 */
+    background: #ffffff;
+    color: #1a1a1a;
+    border-radius: 100px; /* curve edges */
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap; /* prevent text wrapping */
+}
+
+.book-cta-btn:hover {
+    background: #c5a059;
+    border-color: #c5a059;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(197, 160, 89, 0.4);
+}
+
+.book-cta-btn:active {
+    transform: translateY(0);
+}
+
+/* Reviews Section */
+.reviews-container {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.reviews-track {
+    animation: scroll 45s linear infinite;
+    display: flex;
+    /* Ensure flex behavior */
+    width: max-content;
+    /* Ensure it takes full width of children */
+}
+
+.reviews-track:hover {
+    animation-play-state: paused;
+}
+
+.review-card {
+    width: 350px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+        /* Scroll exactly halfway */
+    }
+}

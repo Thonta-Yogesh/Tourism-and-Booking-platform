@@ -1,0 +1,31 @@
+.parallax {
+  overflow: hidden;
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.scroller {
+  display: flex;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 2.5rem; 
+  line-height: 1.1;
+  will-change: transform;
+}
+
+.scroller-text {
+  display: block;
+  margin-right: 30px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .scroller {
+     font-size: 6rem;
+  }
+}

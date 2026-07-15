@@ -1,0 +1,260 @@
+/* Destination Card Styling */
+.destination-card {
+    border-radius: 20px;
+    border: none;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.destination-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.destination-card .card-img-top {
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.destination-card:hover .card-img-top {
+    transform: scale(1.1);
+}
+
+/* Line Clamp */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Centered Search Bar Container */
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 650px; /* Long search bar */
+    display: flex;
+    align-items: center;
+    background: var(--white, #ffffff);
+    border: 1px solid var(--border-color, #eeeeee);
+    border-radius: 100px; /* Curve edges */
+    padding: 6px 10px 6px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: var(--transition-smooth, all 0.4s ease);
+}
+
+.search-wrapper:focus-within {
+    border-color: var(--gold, #c5a059);
+    box-shadow: 0 8px 30px rgba(197, 160, 89, 0.08);
+    transform: translateY(-1px);
+}
+
+.search-icon {
+    color: var(--text-muted, #666666);
+    font-size: 1.1rem;
+    margin-right: 12px;
+}
+
+.search-input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 0.95rem;
+    color: var(--text-main, #333333);
+    padding: 8px 0;
+}
+
+.search-input::placeholder {
+    color: #999999;
+}
+
+.clear-search-btn {
+    border: none;
+    background: transparent;
+    color: #999999;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-search-btn:hover {
+    color: var(--primary, #1a1a1a);
+}
+
+/* Category Tabs */
+.category-tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border-color, #eeeeee);
+    padding-bottom: 2px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+.category-tab {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted, #666666);
+    position: relative;
+    transition: var(--transition-smooth, all 0.3s ease);
+    cursor: pointer;
+}
+
+.category-tab:hover {
+    color: var(--primary, #1a1a1a);
+}
+
+.category-tab.active {
+    color: var(--primary, #1a1a1a);
+    font-weight: 600;
+}
+
+.category-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; /* Align perfectly with the border-bottom */
+    left: 12px;
+    right: 12px;
+    height: 3px;
+    background: #c5a059; /* Brand luxury gold */
+    border-radius: 20px;
+}
+
+/* Refine Bar styling */
+.refine-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.refine-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted, #666666);
+}
+
+.refine-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Custom Filter Pill Buttons (Dropdown Triggers) */
+.filter-pill {
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 100px;
+    border: 1px solid var(--border-color, #eeeeee);
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--text-muted, #666666);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+.filter-pill:hover {
+    border-color: rgba(197, 160, 89, 0.5);
+    color: #1a1a1a;
+    background: rgba(197, 160, 89, 0.04);
+}
+
+.filter-pill.active {
+    background: rgba(197, 160, 89, 0.08);
+    border-color: var(--gold, #c5a059);
+    color: var(--primary, #1a1a1a);
+    font-weight: 600;
+}
+
+/* Dropdown customizations */
+.dropdown-trigger {
+    font-weight: 600;
+}
+
+.dropdown-menu {
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.dropdown-item.active-item {
+    background-color: rgba(197, 160, 89, 0.1);
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+/* Branded primary button hover inside card */
+.destination-card .btn-primary {
+    padding: 10px 24px;
+    font-size: 0.8rem;
+    background: var(--primary, #1a1a1a);
+    border: 1px solid var(--primary, #1a1a1a);
+    border-radius: 100px;
+}
+
+.destination-card .btn-primary:hover {
+    background: #c5a059 !important;
+    border-color: #c5a059 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3) !important;
+}
+
+/* Responsive filters */
+@media (max-width: 768px) {
+    .refine-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 2rem !important;
+    }
+    .refine-controls {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .category-tabs-container {
+        gap: 0.5rem;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 8px;
+    }
+    .category-tab {
+        white-space: nowrap;
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    .category-tab.active::after {
+        bottom: -9px;
+        left: 10px;
+        right: 10px;
+    }
+}

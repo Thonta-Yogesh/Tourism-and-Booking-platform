@@ -1,59 +1,57 @@
-# MyFirstAngularApp
+# ELEVÉ | Luxury Travel & Tourism Portal
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+An immersive, high-end travel booking web application built with **React** and **Vite**. **ELEVÉ** showcases elite global travel coordinates, featuring customized dark-aesthetic layouts, fluid micro-interactions, responsive sidebars, and high-performance canvas animations.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🌌 Key Highlights & Features
 
-```bash
-ng serve
-```
+1. **Interactive Top Destinations Showcase (Home)**
+   - **Shifting Charcoal & Gold Backdrops**: Features a luxury linear gradient (`#090909`, `#151515`, `#261f12`, `#0d0c0b`) matching the elite ELEVÉ theme.
+   - **Atmospheric Glow Effects**: Incorporates radial gold light highlights behind active cards for visual depth.
+   - **Glassmorphic Navigation Controls**: Circular arrow navigation blocks with gold outlines and animated fill transitions.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+2. **Advanced Client Refinement System (Destinations)**
+   - **Elongated Curved Search Bar**: Features pill-shaped search input wrappers with premium shadows and gold outlines on focus.
+   - **Tabbed Categories**: Minimalist textual category navigation tabs with sliding gold underline transitions.
+   - **Refinement Control Bar**: Side-by-side dropdown filter panels (Rating, Price, and Sorting Option) with mutual exclusion logic.
 
-## Code scaffolding
+3. **High-End Details & Booking Action Cards**
+   - **Widescreen Media Spacing**: Taller majestically proportioned details frames (`520px` height) with a `g-5` layout gutter to keep elements spacious and premium.
+   - **Micro-Animations & Hover Zoom**: Subtle `1.03x` scale zooms on gallery cards and active gold outlines on thumbnails.
+   - **Contrast & Legibility Fixes**: Features warm brand-gold (`#c5a059`) text overlays on dark backdrops, guaranteeing high contrast.
+   - **Snug Non-Wrapping Layout**: Added `white-space: nowrap` filters to prevent CTA action labels from wrapping inside responsive columns.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+4. **Fluid Canvas Scroll Animation**
+   - Implements a frame-by-frame scroll animation in the hero section using 192 high-resolution image frames preloaded onto a dynamic HTML5 2D canvas, creating a cinematic parallax effect.
 
-```bash
-ng generate component component-name
-```
+5. **Fluid Scrolling Text Banners**
+   - Incorporates scroll-inertia based running text banners to enhance page engagement.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🛠 Tech Stack
 
-## Building
+- **Framework**: React 19 (Hooks, Suspense, Lazy Loading)
+- **Routing**: React Router 7
+- **Bundler**: Vite 8
+- **Styling**: Vanilla CSS (CSS Variables Design Tokens) & Bootstrap 5
+- **Icons**: Bootstrap Icons
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 📐 Project Structure & Architecture
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- `src/components/`: Reusable modular elements (e.g., custom headers, footers, interactive scroll velocity, and canvas hero).
+- `src/pages/`: Page containers (Home, Destinations, Details, Booking, Payment, Profile, Analytics, Auth).
+- `src/data/`: Static client data mocks for destinations and analytics.
+- `public/`: Public-served assets including the preloaded hero animation frames.
 
-## Running unit tests
+---
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## ⚙️ Development & Build Specifications
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Local Setup
+- Dependency installation: `npm install`
+- Development environment: `npm run dev`
+- Production compilation: `npm run build` (outputs optimized bundle to `dist/`)

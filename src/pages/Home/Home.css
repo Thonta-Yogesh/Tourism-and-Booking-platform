@@ -1,0 +1,266 @@
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.accent-line {
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+    margin: 0 auto;
+}
+
+.exp-card {
+    background: var(--white);
+    padding: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-classy);
+    transition: var(--transition-smooth);
+    overflow: hidden;
+}
+
+.exp-card:hover {
+    box-shadow: var(--shadow-classy);
+    border-color: var(--accent);
+}
+
+.exp-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.exp-info p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.btn-text {
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+}
+
+.banner-section {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.banner-title {
+    color: var(--white);
+    font-size: 2rem;
+}
+
+/* --- Top Destinations Carousel --- */
+
+.top-destinations-section {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    background: #0f0f0f; /* Base luxury dark */
+}
+
+/* Luxury center gold highlight glow */
+.top-destinations-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.14), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.top-destinations-section .section-title {
+    color: #ffffff;
+}
+
+.top-destinations-section .accent-line {
+    background: #c5a059; /* Brand luxury gold */
+}
+
+.animated-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #090909, #151515, #261f12, #0d0c0b);
+    background-size: 400% 400%;
+    animation: gradientBG 18s ease infinite;
+    z-index: 0;
+    opacity: 1;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.perspective-1000 {
+    perspective: 1000px;
+    height: 450px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* Hide cards floating off-screen */
+}
+
+.carousel-card {
+    position: absolute;
+    width: 250px;
+    height: 350px;
+    border-radius: 20px;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    /* Default state: completely hidden or far back */
+    opacity: 0;
+    transform: translateX(0) scale(0.5);
+    z-index: 0;
+}
+
+.card-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6) 70%, transparent);
+    color: white;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.card-overlay h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 5px;
+    color: #ffffff !important;
+}
+
+.card-overlay p {
+    font-size: 0.95rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    opacity: 0.9;
+    color: #ffffff !important;
+}
+
+.card-overlay i {
+    color: #ffffff !important;
+}
+
+/* Active Card (Center) */
+.carousel-card.active {
+    opacity: 1;
+    transform: translateX(0) scale(1.1);
+    z-index: 10;
+    width: 320px;
+    /* Bigger width */
+    height: 420px;
+    /* Bigger height */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+
+    /* Glass Pop Effect */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(197, 160, 89, 0.4); /* Luxury branded gold outline */
+}
+
+.carousel-card.active .card-overlay {
+    transform: translateY(0);
+}
+
+/* Previous Card (Left) */
+.carousel-card.prev {
+    opacity: 0.7;
+    transform: translateX(-110%) scale(0.85) rotateY(15deg);
+    z-index: 5;
+    filter: brightness(0.7);
+}
+
+/* Next Card (Right) */
+.carousel-card.next {
+    opacity: 0.7;
+    transform: translateX(110%) scale(0.85) rotateY(-15deg);
+    z-index: 5;
+    filter: brightness(0.7);
+}
+
+/* Ensure only 3 visible for clean look, or handle others */
+.carousel-card:not(.active):not(.prev):not(.next) {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Custom Gold Stars */
+.top-destinations-section .rating i {
+    color: #c5a059 !important;
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+}
+
+/* Branded Luxury Chevron Controls */
+.carousel-control-btn {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    background: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+    font-size: 1.2rem;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: pointer;
+    z-index: 10;
+    outline: none;
+}
+
+.carousel-control-btn:hover {
+    background: #c5a059;
+    color: #ffffff;
+    border-color: #c5a059;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(197, 160, 89, 0.4);
+}
+
+.carousel-control-btn:active {
+    transform: translateY(0);
+}

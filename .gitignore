@@ -44,5 +44,7 @@ __screenshots__/
 Thumbs.db
 
 # Ignore large assets
-home_animation_pics/
+# Uncomment the line below if you want to exclude the 470MB animation asset folder from Git.
+# Note: If excluded, the scroll-driven hero canvas animation will not display on Vercel.
+# public/home_animation_pics/
 src_backup/

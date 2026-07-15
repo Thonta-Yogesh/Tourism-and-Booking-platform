@@ -539,6 +539,17 @@
 
 /* ---- RESPONSIVE ---- */
 @media (max-width: 900px) {
+    .page-shell {
+        flex-direction: column;
+        padding-top: 60px;
+    }
+
+    .page-main {
+        margin-left: 0;
+        padding: 1.25rem 1rem;
+        padding-top: 1rem;
+    }
+
     .charts-row-2 {
         grid-template-columns: 1fr;
     }

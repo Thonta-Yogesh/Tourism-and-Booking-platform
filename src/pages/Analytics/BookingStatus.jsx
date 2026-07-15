@@ -83,13 +83,13 @@ export default function BookingStatus() {
 
           <div className="charts-container">
             {/* Summary Cards */}
-            <div className="summary-grid">
+            <div className="kpi-grid">
               {summaryCards.map(card => (
-                <div key={card.label} className="summary-card-item">
-                  <div className="sc-icon" style={{ background: card.color + '22', color: card.color }}>{card.icon}</div>
+                <div key={card.label} className="kpi-card">
+                  <div className="kpi-icon-wrap" style={{ background: card.color + '22', color: card.color }}>{card.icon}</div>
                   <div className="sc-info">
-                    <div className="sc-value">{card.value}</div>
-                    <div className="sc-label">{card.label}</div>
+                    <div className="kpi-label">{card.label}</div>
+                    <div className="kpi-num">{card.value}</div>
                   </div>
                 </div>
               ))}

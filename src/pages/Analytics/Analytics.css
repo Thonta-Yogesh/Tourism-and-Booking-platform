@@ -678,6 +678,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
+    margin-bottom: 2.25rem; /* space gap between KPI cards and charts */
 }
 
 .kpi-card {

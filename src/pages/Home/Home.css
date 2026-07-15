@@ -59,6 +59,28 @@
     font-size: 2rem;
 }
 
+.banner-cta-btn {
+    border: 1px solid #c5a059 !important;
+    color: #c5a059 !important;
+    border-radius: 30px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background: transparent;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.banner-cta-btn:hover {
+    background: #c5a059 !important;
+    color: #1a1a1a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3);
+}
+
 /* --- Top Destinations Carousel --- */
 
 .top-destinations-section {

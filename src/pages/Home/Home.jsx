@@ -132,7 +132,7 @@ export default function Home() {
       <section className="banner-section py-5">
         <div className="container text-center">
           <h2 className="banner-title mb-4">Ready for your next journey?</h2>
-          <Link to="/book-tour" className="btn btn-outline" style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}>
+          <Link to="/book-tour" className="banner-cta-btn">
             Get in Touch
           </Link>
         </div>
